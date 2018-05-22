@@ -4,10 +4,32 @@ import Question from './Question'
 
 class QuestionList extends Component {
 
+    onRadioChange = (value) => {
+        console.log("HIHIHI: ", value)
+    }
+
     render() {
         return (
             <div className='question_list'>
                 <h4>Question List</h4>
+                <div>
+                    <input
+                        type="radio"
+                        name="answered_or_unanswered"
+                        value="unanswered"
+                        id="unanswered"
+                        defaultChecked={true}
+                        onClick={() => this.onRadioChange("unanswered")}
+                    />
+                    <label htmlFor="unanswered">Unanswered</label>
+                    <input type="radio"
+                           name="answered_or_unanswered"
+                           value="answered"
+                           id="answered"
+                           onClick={() => this.onRadioChange("answered")}
+                    />
+                    <label htmlFor="answered">answered</label>
+                </div>
                 <ul>
                     {this.props.questionIds.map((id) => (
                         <li key={id}>
