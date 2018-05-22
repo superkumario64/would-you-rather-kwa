@@ -1,7 +1,7 @@
 import { getInitialData } from "../utils/api";
 import { receiveUsers } from "./users";
 import { receiveQuestions } from "./questions";
-import { setAuthedUser } from "./authedUser";
+import { setAuthedUser, logoutAuthedUser } from "./authedUser";
 import { showLoading, hideLoading } from 'react-redux-loading'
 
 export function handleInitialData () {
@@ -19,5 +19,11 @@ export function handleInitialData () {
 export function handleLogin(id) {
     return (dispatch) => {
         dispatch(setAuthedUser(id))
+    }
+}
+
+export function handleLogout() {
+    return (dispatch) => {
+        dispatch(logoutAuthedUser())
     }
 }

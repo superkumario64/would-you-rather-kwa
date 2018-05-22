@@ -6,7 +6,7 @@ class Question extends Component{
         console.log(this.props)
         return (
             <div className='question'>
-
+                <span>{this.props.question.optionOne.text} or {this.props.question.optionTwo.text}?</span>
             </div>
         )
     }
