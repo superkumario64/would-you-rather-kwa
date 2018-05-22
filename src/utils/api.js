@@ -8,11 +8,13 @@ import {
 export function getInitialData () {
     return Promise.all([
         _getUsers(),
-        _getQuestions
-    ]).then((users, questions) => ({
-        users,
-        questions
-    }))
+        _getQuestions()
+    ]).then(([users, questions]) => {
+        return {
+            users,
+            questions
+        }
+    })
 }
 
 export function saveQuestion (question) {
