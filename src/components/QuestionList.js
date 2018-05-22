@@ -4,11 +4,32 @@ import Question from './Question'
 
 class QuestionList extends Component {
 
-    onRadioChange = (value) => {
-        console.log("HIHIHI: ", value)
+    state = {
+        filteredQuestions: []
+    }
+
+    onRadioChange = (answered) => {
+        this.setState(() => {
+            return {
+                filteredQuestions: this.props.questionIds.filter(questionsId => {
+                    if (answered){
+                        return this.props.questions[questionsId].optionOne.votes.includes(this.props.authedUser) || this.props.questions[questionsId].optionTwo.votes.includes(this.props.authedUser)
+                    } else {
+                        return !this.props.questions[questionsId].optionOne.votes.includes(this.props.authedUser) && !this.props.questions[questionsId].optionTwo.votes.includes(this.props.authedUser)
+                    }
+
+                })
+            }
+        })
+    }
+
+    componentDidMount() {
+        this.onRadioChange(false)
     }
 
     render() {
+        const { filteredQuestions } = this.state
+
         return (
             <div className='question_list'>
                 <h4>Question List</h4>
@@ -16,22 +37,20 @@ class QuestionList extends Component {
                     <input
                         type="radio"
                         name="answered_or_unanswered"
-                        value="unanswered"
                         id="unanswered"
                         defaultChecked={true}
-                        onClick={() => this.onRadioChange("unanswered")}
+                        onClick={() => this.onRadioChange(false)}
                     />
                     <label htmlFor="unanswered">Unanswered</label>
                     <input type="radio"
                            name="answered_or_unanswered"
-                           value="answered"
                            id="answered"
-                           onClick={() => this.onRadioChange("answered")}
+                           onClick={() => this.onRadioChange(true)}
                     />
                     <label htmlFor="answered">answered</label>
                 </div>
                 <ul>
-                    {this.props.questionIds.map((id) => (
+                    {filteredQuestions.map((id) => (
                         <li key={id}>
                             <Question id={id} />
                         </li>
@@ -46,6 +65,7 @@ function mapStateToProps({ questions, authedUser }) {
     return {
         questionIds: Object.keys(questions)
             .sort((a,b) => questions[b].timestamp - questions[a].timestamp),
+        questions,
         authedUser
     }
 }
