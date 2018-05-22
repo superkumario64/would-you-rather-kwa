@@ -7,7 +7,7 @@ class QuestionList extends Component {
             <div>
                 <h3>Question List</h3>
                 <ul>
-                    {this.props.questionId.map((id) => (
+                    {this.props.questionIds.map((id) => (
                         <li key={id}>
                             <div>ID: {id}</div>
                         </li>
@@ -20,7 +20,7 @@ class QuestionList extends Component {
 
 function mapStateToProps({ questions }) {
     return {
-        questionId: Object.keys(questions)
+        questionIds: Object.keys(questions)
             .sort((a,b) => questions[b].timestamp - questions[a].timestamp)
     }
 }

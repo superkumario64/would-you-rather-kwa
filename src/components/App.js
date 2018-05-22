@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
 import QuestionList from './QuestionList'
+import Login from './Login'
 
 class App extends Component {
     componentDidMount() {
@@ -12,16 +13,16 @@ class App extends Component {
             <div>
                 {this.props.loading === true
                     ? null
-                    : <QuestionList />
+                    : <Login />
                 }
             </div>
         )
     }
 }
 
-function mapStateToProps({ authedUser }) {
+function mapStateToProps({ users, questions }) {
     return {
-        loading: authedUser === null
+        loading: users === null || questions === null
     }
 }
 
