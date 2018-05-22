@@ -5,6 +5,7 @@ import { handleInitialData } from '../actions/shared'
 import QuestionList from './QuestionList'
 import LoadingBar from 'react-redux-loading'
 import AddQuestion from './AddQuestion'
+import Login from './Login'
 import Nav from './Nav'
 
 class App extends Component {
@@ -17,12 +18,18 @@ class App extends Component {
                 <Fragment>
                     <LoadingBar />
                     <div className='container'>
-                        <Nav/>
-                        {this.props.loading === true
-                            ? null
-                            : <div>
-                                <Route path='/' exact component={QuestionList} />
-                                <Route path='/add' component={AddQuestion} />
+                        {this.props.authedUser === null ?
+                            <Login/>
+                            :
+                            <div>
+                                <Nav/>
+                                {this.props.loading === true
+                                    ? null
+                                    : <div>
+                                        <Route path='/' exact component={QuestionList} />
+                                        <Route path='/add' component={AddQuestion} />
+                                    </div>
+                                }
                             </div>
                         }
                     </div>
@@ -32,9 +39,10 @@ class App extends Component {
     }
 }
 
-function mapStateToProps({ users, questions }) {
+function mapStateToProps({ users, questions, authedUser }) {
     return {
-        loading: users === null || questions === null
+        loading: users === null || questions === null,
+        authedUser
     }
 }
 
