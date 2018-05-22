@@ -1,27 +1,34 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import Login from './Login'
 
 class QuestionList extends Component {
     render() {
         return (
             <div>
-                <h3>Question List</h3>
-                <ul>
-                    {this.props.questionIds.map((id) => (
-                        <li key={id}>
-                            <div>ID: {id}</div>
-                        </li>
-                    ))}
-                </ul>
+                {this.props.authedUser === null ?
+                    (<Login/>)
+                    : (<div className='question_list'>
+                        <h3>Question List</h3>
+                        <ul>
+                            {this.props.questionIds.map((id) => (
+                                <li key={id}>
+                                    <div>ID: {id}</div>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>)
+                }
             </div>
         )
     }
 }
 
-function mapStateToProps({ questions }) {
+function mapStateToProps({ questions, authedUser }) {
     return {
         questionIds: Object.keys(questions)
-            .sort((a,b) => questions[b].timestamp - questions[a].timestamp)
+            .sort((a,b) => questions[b].timestamp - questions[a].timestamp),
+        authedUser
     }
 }
 
