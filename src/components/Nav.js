@@ -10,7 +10,7 @@ class Nav extends Component {
     render(){
         return (
             <div>
-                <h3>Welcome {this.props.authedUser}</h3>
+                <h3>Welcome {this.props.users[this.props.authedUser].name}</h3>
                 <button
                     onClick={() => this.doLogout()}
                 >
@@ -35,9 +35,10 @@ class Nav extends Component {
     }
 }
 
-function mapStateToProps({ authedUser }) {
+function mapStateToProps({ authedUser, users }) {
     return {
-        authedUser
+        authedUser,
+        users
     }
 }
 
