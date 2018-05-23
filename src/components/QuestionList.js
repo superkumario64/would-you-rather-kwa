@@ -3,56 +3,25 @@ import { connect } from 'react-redux'
 import Question from './Question'
 
 class QuestionList extends Component {
-
-    state = {
-        filteredQuestions: []
-    }
-
-    onRadioChange = (answered) => {
-        this.setState(() => {
-            return {
-                filteredQuestions: this.props.questionIds.filter(questionsId => {
-                    if (answered){
-                        return this.props.questions[questionsId].optionOne.votes.includes(this.props.authedUser) || this.props.questions[questionsId].optionTwo.votes.includes(this.props.authedUser)
-                    } else {
-                        return !this.props.questions[questionsId].optionOne.votes.includes(this.props.authedUser) && !this.props.questions[questionsId].optionTwo.votes.includes(this.props.authedUser)
-                    }
-
-                })
+    filteredQuestions() {
+        return this.props.questionIds.filter(questionsId => {
+            if (this.props.answered){
+                return this.props.questions[questionsId].optionOne.votes.includes(this.props.authedUser) || this.props.questions[questionsId].optionTwo.votes.includes(this.props.authedUser)
+            } else {
+                return !this.props.questions[questionsId].optionOne.votes.includes(this.props.authedUser) && !this.props.questions[questionsId].optionTwo.votes.includes(this.props.authedUser)
             }
-        })
-    }
 
-    componentDidMount() {
-        this.onRadioChange(false)
+        })
+
     }
 
     render() {
-        const { filteredQuestions } = this.state
-
         return (
-            <div className='question_list'>
-                <h4>Question List</h4>
-                <div>
-                    <input
-                        type="radio"
-                        name="answered_or_unanswered"
-                        id="unanswered"
-                        defaultChecked={true}
-                        onClick={() => this.onRadioChange(false)}
-                    />
-                    <label htmlFor="unanswered">Unanswered</label>
-                    <input type="radio"
-                           name="answered_or_unanswered"
-                           id="answered"
-                           onClick={() => this.onRadioChange(true)}
-                    />
-                    <label htmlFor="answered">answered</label>
-                </div>
+            <div>
                 <ul>
-                    {filteredQuestions.map((id) => (
+                    {this.filteredQuestions().map((id) => (
                         <li key={id}>
-                            <Question id={id} />
+                            <Question id={id} answered={this.props.answered} />
                         </li>
                     ))}
                 </ul>
@@ -70,4 +39,4 @@ function mapStateToProps({ questions, authedUser }) {
     }
 }
 
-export default connect(mapStateToProps)(QuestionList);
+export default connect(mapStateToProps)(QuestionList)

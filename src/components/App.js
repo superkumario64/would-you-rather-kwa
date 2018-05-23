@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
-import QuestionList from './QuestionList'
+import Dashboard from './Dashboard'
 import LoadingBar from 'react-redux-loading'
 import AddQuestion from './AddQuestion'
 import Login from './Login'
@@ -26,7 +26,7 @@ class App extends Component {
                                 {this.props.loading === true
                                     ? null
                                     : <div>
-                                        <Route path='/' exact component={QuestionList} />
+                                        <Route path='/' exact component={Dashboard} />
                                         <Route path='/add' component={AddQuestion} />
                                     </div>
                                 }
