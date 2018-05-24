@@ -24,7 +24,9 @@ class QuestionView extends Component {
                 {
                     is404 ?
                         <Four04 />
-                        : userAnswered ? <QuestionAnswered /> : <QuestionUnanswered />
+                        : userAnswered ?
+                        <QuestionAnswered question_id={question_id} />
+                        : <QuestionUnanswered question_id={question_id} />
                 }
             </div>
         )
