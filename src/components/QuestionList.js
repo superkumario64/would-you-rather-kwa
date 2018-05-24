@@ -4,13 +4,13 @@ import Question from './Question'
 
 class QuestionList extends Component {
     filteredQuestions() {
+        const { users, authedUser } = this.props
         return this.props.questionIds.filter(questionsId => {
             if (this.props.answered){
-                return this.props.questions[questionsId].optionOne.votes.includes(this.props.authedUser) || this.props.questions[questionsId].optionTwo.votes.includes(this.props.authedUser)
+                return users[authedUser].answers.hasOwnProperty(questionsId)
             } else {
-                return !this.props.questions[questionsId].optionOne.votes.includes(this.props.authedUser) && !this.props.questions[questionsId].optionTwo.votes.includes(this.props.authedUser)
+                return !users[authedUser].answers.hasOwnProperty(questionsId)
             }
-
         })
 
     }
@@ -30,11 +30,11 @@ class QuestionList extends Component {
     }
 }
 
-function mapStateToProps({ questions, authedUser }) {
+function mapStateToProps({ questions, authedUser, users }) {
     return {
         questionIds: Object.keys(questions)
             .sort((a,b) => questions[b].timestamp - questions[a].timestamp),
-        questions,
+        users,
         authedUser
     }
 }
