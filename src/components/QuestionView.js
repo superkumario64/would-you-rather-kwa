@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import QuestionAnswered from './QuestionAnswered'
 import QuestionUnanswered from './QuestionUnanswered'
+import Four04 from './Four04'
 
 class QuestionView extends Component {
     hasAuthedUserAnsweredQuestion(authedUser, question) {
@@ -12,12 +13,18 @@ class QuestionView extends Component {
     render(){
         const { authedUser, question_id, questions } = this.props
 
-        const userAnswered = this.hasAuthedUserAnsweredQuestion(authedUser, questions[question_id])
+        const is404 = !questions.hasOwnProperty(question_id)
+
+        let userAnswered = false;
+
+        if (!is404) userAnswered = this.hasAuthedUserAnsweredQuestion(authedUser, questions[question_id])
 
         return (
             <div>
                 {
-                    userAnswered ? <QuestionAnswered /> : <QuestionUnanswered />
+                    is404 ?
+                        <Four04 />
+                        : userAnswered ? <QuestionAnswered /> : <QuestionUnanswered />
                 }
             </div>
         )
