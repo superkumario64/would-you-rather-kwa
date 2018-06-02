@@ -29,7 +29,7 @@ class QuestionUnanswered extends Component {
         return (
             <div>
                 <h4>Would You Rather</h4>
-                <img src={users[authedUser].avatarURL} />
+                <img src={users[authedUser].avatarURL} alt={users[authedUser].name} />
                     <form onSubmit={this.handleSubmit}>
                         <div>
                             <input
