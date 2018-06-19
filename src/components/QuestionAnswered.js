@@ -27,12 +27,12 @@ class QuestionAnswered extends Component {
         return (
             <div>
                 <h3>Would you Rather...</h3>
-                <h4>optionOne: "{optionOne.text}" got {optionOneVotes} votes which is {optionOnePercent}% of the total votes.
+                <h4>Option One: "{optionOne.text}" got {optionOneVotes} votes which is {optionOnePercent}% of the total votes.
                     <span className='your-vote'>
                         {this.displayAuthedUsersChoice(optionOne, authedUser)}
                     </span>
                 </h4>
-                <h4>optionOne: "{optionTwo.text}" got {optionTwoVotes} votes which is {optionTwoPercent}% of the total votes.
+                <h4>Option Two: "{optionTwo.text}" got {optionTwoVotes} votes which is {optionTwoPercent}% of the total votes.
                     <span className='your-vote'>
                         {this.displayAuthedUsersChoice(optionTwo, authedUser)}
                     </span>

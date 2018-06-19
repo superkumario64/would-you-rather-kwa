@@ -28,6 +28,11 @@ class Nav extends Component {
                                 Add Question
                             </NavLink>
                         </li>
+                        <li>
+                            <NavLink to='/leaderboard' activeClassName='active'>
+                                Leaderboard
+                            </NavLink>
+                        </li>
                     </ul>
                 </nav>
             </div>

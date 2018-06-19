@@ -26,3 +26,33 @@ li {
 .your-vote {
   color: red;
 }
+
+
+.leaderboard-row {
+  position: relative;
+  padding-top: 35px;
+}
+
+.leaderboard-avatar-span {
+  padding-left: 210px;
+}
+
+.leaderboard-avatar {
+  height: 75px;
+}
+
+.pad-right {
+  padding-right: 15px;
+}
+
+.rank {
+  font-size: 25px;
+  position: absolute;
+  top: 50%;
+  display: inline-block;
+}
+
+.questions-asked-and-answered {
+  position: absolute;
+  top: 50%;
+}
