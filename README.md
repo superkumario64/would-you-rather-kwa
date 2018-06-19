@@ -1,3 +1,15 @@
+# Would You Rather KWA
+Clone, build and run to play a fun game of would you rather.
+
+## Instructions to play
+
+1. `git clone https://github.com/superkumario64/would-you-rather-kwa.git`
+2. `cd would-you-rather-kwa/`
+3. `yarn install`
+4. `yarn start`
+5. enjoy
+
+# Create React App's README:
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
